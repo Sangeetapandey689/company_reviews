@@ -2,13 +2,14 @@
   "name": "company-reviews",
   "version": "1.0.0",
   "description": "A company reviews project",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
     "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "mysql2": "^3.6.1",
     "sequelize": "^6.33.0"
   }

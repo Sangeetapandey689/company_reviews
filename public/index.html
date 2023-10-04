@@ -1,56 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Reviews</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Company Review </title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Company Reviews</h1>
-    </header>
-    
-    <main>
-        <section id="review-form">
-            <h2>Submit a Review</h2>
-            <!-- Update the <form> element to include the action attribute -->
-         <form id="company-review-form" action="/submit-review" method="post">
-         <label for="company-name">Company Name:</label>
-         <input type="text" id="company-name" name="companyName" required>
+    <div class="container">
+        <h1>Add a Review</h1>
+        <form id="reviewForm">
+            <label for="companyName">Company Name:</label>
+            <input type="text" id="companyName" required>
+            
+            <label for="pros">Pros:</label>
+            <textarea id="pros" required></textarea>
+            
+            <label for="cons">Cons:</label>
+            <textarea id="cons" required></textarea>
+            
+            <label for="rating">Rating (1-5):</label>
+            <input type="number" id="rating" min="1" max="5" required>
+            
+            <button type="submit">Submit Review</button>
+        </form>
 
-          <label for="industry">Industry:</label>
-          <input type="text" id="industry" name="industry" required>
-
-          <label for="location">Location:</label>
-          <input type="text" id="location" name="location" required>
-
-           <label for="rating">Rating:</label>
-       <select id="rating" name="rating" required>
-           <option value="5">5 - Excellent</option>
-           <option value="4">4 - Good</option>
-           <option value="3">3 - Average</option>
-           <option value="2">2 - Poor</option>
-           <option value="1">1 - Very Poor</option>
-       </select>
-
-            <label for="review">Review:</label>
-            <textarea id="review" name="review" rows="4" required></textarea>
-
-             <button type="submit">Submit Review</button>
-       </form>
-
-        </section>
-
-        <section id="reviews">
-            <h2>Latest Reviews</h2>
-            <ul id="review-list">
-                <!-- Reviews will be displayed here dynamically using JavaScript -->
-            </ul>
-        </section>
+        <h2>Search </h2>
+        <input type="text" id="searchInput" placeholder="Search by Company Name">
+        <h2>company reviws</h2>
         
-    </main>
-
-<script src="script.js"></script>
+        <div id="reviewsList">
+            <!-- Reviews will be displayed here -->
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
+

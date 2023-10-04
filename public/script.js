@@ -1,37 +1,46 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const reviewForm = document.getElementById("company-review-form");
-    const reviewList = document.getElementById("review-list");
+document.addEventListener('DOMContentLoaded', function() {
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewsList = document.getElementById('reviewsList');
 
-    // Handle form submission
-    reviewForm.addEventListener("submit", function (e) {
-        e.preventDefault();
+    reviewForm.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-        // Get form data
-        const formData = new FormData(reviewForm);
-        const reviewData = {};
-        formData.forEach((value, key) => {
-            reviewData[key] = value;
-        });
+        // Get values from the form
+        const companyName = document.getElementById('companyName').value;
+        const pros = document.getElementById('pros').value;
+        const cons = document.getElementById('cons').value;
+        const rating = document.getElementById('rating').value;
 
-        // Add the review to the list
-        addReviewToDOM(reviewData);
+        // Create a new review element
+        const review = document.createElement('div');
+        review.classList.add('review');
+        review.innerHTML = `
+            <h3>${companyName}</h3>
+            <p><strong>Pros:</strong> ${pros}</p>
+            <p><strong>Cons:</strong> ${cons}</p>
+            <p><strong>Rating:</strong> ${rating}</p>
+        `;
 
-        // Clear the form
+        // Append the review to the list
+        reviewsList.appendChild(review);
+
+        // Clear the form fields
         reviewForm.reset();
     });
 
-    // Function to add a review to the DOM
-    function addReviewToDOM(review) {
-        const reviewItem = document.createElement("li");
-        reviewItem.classList.add("review-item");
-        reviewItem.innerHTML = `
-            <p><strong>Company Name:</strong> ${review.companyName}</p>
-            <p><strong>Industry:</strong> ${review.industry}</p>
-            <p><strong>Location:</strong> ${review.location}</p>
-            <p><strong>Rating:</strong> ${review.rating}</p>
-            <p><strong>Review:</strong> ${review.review}</p>
-        `;
+    const searchInput = document.getElementById('searchInput');
 
-        reviewList.appendChild(reviewItem);
-    }
+    searchInput.addEventListener('input', function() {
+        const searchText = searchInput.value.toLowerCase();
+        const reviews = reviewsList.getElementsByClassName('review');
+
+        for (const review of reviews) {
+            const companyName = review.querySelector('h3').textContent.toLowerCase();
+            if (companyName.includes(searchText)) {
+                review.style.display = 'block';
+            } else {
+                review.style.display = 'none';
+            }
+        }
+    });
 });
